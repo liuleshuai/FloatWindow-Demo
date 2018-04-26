@@ -19,12 +19,14 @@ public class WindowActivity extends AppCompatActivity {
     }
 
     private void requestPermission() {
-        if(Build.VERSION.SDK_INT > 24){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             if(!Settings.canDrawOverlays(this)){
                 Toast.makeText(this, "can not DrawOverlays", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + WindowActivity.this.getPackageName()));
                 startActivityForResult(intent, 1);
             }
+        }else{
+            WindowUtils.showPopupWindow(this);
         }
     }
 

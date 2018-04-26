@@ -1,6 +1,7 @@
 package com.example.liukuo.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Build;
 import android.view.Gravity;
@@ -74,9 +75,17 @@ public class WindowUtils {
 
     }
 
-    private static View setUpView(Context context) {
+    private static View setUpView(final Context context) {
         View view;
         view = LayoutInflater.from(context).inflate(R.layout.window_view, null);
+        ForeverMarqueeTextView tv = view.findViewById(R.id.tv);
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, VolleyActivity.class));
+                hidePopupWindow();
+            }
+        });
         return view;
     }
 

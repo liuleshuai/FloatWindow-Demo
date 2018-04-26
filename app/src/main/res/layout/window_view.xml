@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.liukuo.myapplication.ForeverMarqueeTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="left|center"
@@ -10,9 +11,9 @@
     android:singleLine="true"
     android:minHeight="40dp"
     android:scrollHorizontally="true"
-    android:text="                                                    1111111111                                          "
+    android:text="you can click me to jump! click me!! clicke me! click!!!click!!!click!!!"
     android:textColor="@color/colorAccent"
     android:textScaleX="1.0"
     android:textSize="15sp">
 
-</TextView>
+</com.example.liukuo.myapplication.ForeverMarqueeTextView>
