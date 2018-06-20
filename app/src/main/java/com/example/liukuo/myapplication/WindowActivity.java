@@ -23,15 +23,17 @@ public class WindowActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
     }
 
-    private void requestPermission() {
+    private void requestPermission(int requestCode) {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             if(!Settings.canDrawOverlays(this)){
                 Toast.makeText(this, "can not DrawOverlays", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + WindowActivity.this.getPackageName()));
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, requestCode);
+            } else {
+                VideoUtils.showVideo(this);
             }
         }else{
-            WindowUtils.showPopupWindow(this);
+            VideoUtils.showVideo(this);
         }
     }
 
@@ -46,11 +48,18 @@ public class WindowActivity extends AppCompatActivity {
                 Toast.makeText(this, "Permission Allowed", Toast.LENGTH_SHORT).show();
                 WindowUtils.showPopupWindow(this);
             }
+        } else if (requestCode == 2) {
+            if (!Settings.canDrawOverlays(this)) {
+                Toast.makeText(this, "Permission Denieddd by user.Please Check it in Settings", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Permission Allowed", Toast.LENGTH_SHORT).show();
+                VideoUtils.showVideo(this);
+            }
         }
     }
 
     public void windowButton(View view) {
-        requestPermission();
+        requestPermission(1);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -76,5 +85,15 @@ public class WindowActivity extends AppCompatActivity {
             builder.setFullScreenIntent(hangPendingIntent, true);
         }
         notificationManager.notify(2, builder.build());
+    }
+
+    public void openVideo(View view) {
+        requestPermission(2);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        VideoUtils.hideVideo();
     }
 }

@@ -22,4 +22,12 @@
         android:textAllCaps="false"
         android:text="NotifyButton"
         android:onClick="notifyButton"/>
+
+    <Button
+        android:id="@+id/video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="openVideo"
+        android:text="OpenVideo"
+        android:textAllCaps="false" />
 </LinearLayout>

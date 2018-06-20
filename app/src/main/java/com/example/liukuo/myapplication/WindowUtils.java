@@ -45,6 +45,7 @@ public class WindowUtils {
         // 类型
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //解决sdk24起不能再用TYPE_TOAST的问题
+            //注意：Android O 需要设置成 TYPE_APPLICATION_OVERLAY
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
                 params.type = WindowManager.LayoutParams.TYPE_PHONE;
             } else {
